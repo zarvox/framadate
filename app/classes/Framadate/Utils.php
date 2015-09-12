@@ -22,6 +22,10 @@ class Utils
 {
     public static function get_server_name()
     {
+        $sandstormPath = $_SERVER["HTTP_X_SANDSTORM_BASE_PATH"];
+        if ($sandstormPath) {
+            return $sandstormPath . '/';
+        }
         $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '/' : ':' . $_SERVER['SERVER_PORT'] . '/';
         $server_name = $_SERVER['SERVER_NAME'] . $port . dirname($_SERVER['SCRIPT_NAME']) . '/';

@@ -234,10 +234,6 @@ echo '
                         <h4 class="control-label">'. _("Initiator of the poll") .'</h4>
                         <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
                     </div>
-                    <div class="form-group">
-                        <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
-                    </div>
                 </div>'."\n";
 
 //affichage de la description du sondage

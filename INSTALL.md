@@ -105,7 +105,6 @@ SONDAGE
     nom_admin                   text                nom de l'auteur du sondage
     titre                       text                titre du sondage
     id_sondage_admin            alpha-numérique     numéro du sondage pour le lien d'administration
-    date_fin                    alpha-numérique     date de fin su sondage au format SQL
     format                      text                format du sondage : D/D+ pour Date, A/A+ pour Autre
     mailsonde                   text                envoi de mail a l'auteur du sondage a chaque participation ("yes" ou vide)
 

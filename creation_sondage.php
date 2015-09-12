@@ -67,10 +67,8 @@ function ajouter_sondage()
     }
     $sondage_admin = $sondage.random(8);
 
-    $date_fin = $_SESSION["champdatefin"]; // provided by choix_autre.php or choix_date.php
-    $_SESSION["champdatefin"]=""; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
     $sql = 'INSERT INTO sondage
-          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
+          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, format, mailsonde)
           VALUES (
           '.$connect->Param('id_sondage').',
           '.$connect->Param('commentaires').',
@@ -78,7 +76,6 @@ function ajouter_sondage()
           '.$connect->Param('nom_admin').',
           '.$connect->Param('titre').',
           '.$connect->Param('id_sondage_admin').',
-          FROM_UNIXTIME('.$date_fin.'),
           '.$connect->Param('format').',
           '.$connect->Param('mailsonde').'
           )';
@@ -106,8 +103,7 @@ function ajouter_sondage()
             Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
         }
     }
-    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
-    //Utils::cleaning_polls($connect, 'admin/logs_studs.txt');
+    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, '/var/logs_studs.txt');
 
     // Don't keep days, hours and choices in memory (in order to make new polls)
     for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {

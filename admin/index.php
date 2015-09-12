@@ -52,15 +52,15 @@ while($dsondage = $sondage->FetchNextObject(false)) {
 
         if (Utils::remove_sondage($connect, $dsondage->id_sondage)) {
            // ecriture des traces dans le fichier de logs
-           error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+           error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, '/var/logs_studs.txt');
         }
     }
 }
 
-$sondage=$connect->Execute("select * from sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC");
+$sondage=$connect->Execute("select * from sondage");
 $nbsondages=$sondage->RecordCount();
 
-$btn_logs = (is_readable('logs_studs.txt')) ? '<a role="button" class="btn btn-default btn-xs pull-right" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a>' : '';
+$btn_logs = '';
 
 echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") . $btn_logs .'</p>'."\n";
 
@@ -72,7 +72,6 @@ echo '<table class="table table-bordered">
         <th scope="col">'. _("Title") .'</th>
         <th scope="col">'. _("Author") .'</th>
         <th scope="col">'. _("Email") .'</th>
-        <th scope="col">'. _("Expiration's date") .'</th>
         <th scope="col">'. _("Users") .'</th>
         <th scope="col" colspan="3">'. _("Actions") .'</th>
     </tr>'."\n";
@@ -94,13 +93,6 @@ while($dsondage = $sondage->FetchNextObject(false)) {
         <td>'.stripslashes($dsondage->nom_admin).'</td>
         <td>'.stripslashes($dsondage->mail_admin).'</td>';
 
-    if (strtotime($dsondage->date_fin) > time()) {
-        echo '
-        <td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
-    } else {
-        echo '
-        <td><span class="text-danger">'.date("d/m/y",strtotime($dsondage->date_fin)).'</span></td>';
-    }
     echo '
         <td>'.$nbuser.'</td>
         <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">' . _("See the poll") . '</span></a></td>

@@ -252,17 +252,4 @@ class Utils
       return $suppression_OK ;
     }
 
-    public static function cleaning_polls($connect, $log_txt) {
-        $connect->StartTrans();
-        $req = 'SELECT * FROM sondage WHERE date_fin < NOW() AND date_fin != 0 LIMIT 20';
-        $sql = $connect->Prepare($req);
-        $cleaning = $connect->Execute($sql);
-
-        while ($dcleaning = $cleaning->FetchNextObject(false)) {
-            if (self::remove_sondage($connect, $dcleaning->id_sondage)) {
-                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $dcleaning->id_sondage."\t".$dcleaning->format."\t".$dcleaning->nom_admin."\t".$dcleaning->mail_admin."\n", 3, $log_txt);
-            }
-        }
-        $connect->CompleteTrans();
-    }
 }

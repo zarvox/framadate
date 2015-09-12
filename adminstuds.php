@@ -274,7 +274,7 @@ if (isset($_POST["confirmesuppression"])) {
 
     if (Utils::remove_sondage($connect, $numsondage)) {
         // on ecrit dans le fichier de logs la suppression du sondage
-        error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
+        error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, '/var/logs_studs.txt');
 
         // Email sent
         send_mail_admin();
@@ -447,14 +447,6 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
         $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
         $sql = $connect->Prepare($sql);
         $connect->Execute($sql, array($dateinsertion, $numsondage));
-
-        /* Doesn't work → 30/11/-0001
-        if ($nouvelledate > strtotime($dsondage->date_fin)) {
-            $date_fin=$nouvelledate+200000;
-            $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
-            $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($date_fin, $numsondage));
-        }*/
 
         //mise a jour des reponses actuelles correspondant au sujet ajouté
         $sql = 'UPDATE user_studs SET reponses = '.$connect->Param('reponses').' WHERE nom = '.$connect->Param('nom').' AND id_users='.$connect->Param('id_users');
@@ -728,8 +720,6 @@ echo '
                         <ul class="dropdown-menu" role="menu">
                             <li><button class="btn btn-link" type="submit" name="removevotes">' . _('Remove all the votes') . '</button></li>
                             <li><button class="btn btn-link" type="submit" name="removecomments">' . _('Remove all the comments') . '</button></li>
-                            <li class="divider" role="presentation"></li>
-                            <li><button class="btn btn-link" type="submit" id="suppressionsondage" name="suppressionsondage" value="" >'. _("Remove the poll") .'</button></li>
                         </ul>
                     </div>
                 </div>
@@ -765,20 +755,6 @@ echo '
                         <button type="submit" id="btn-new-desc" name="boutonnouveauxcommentaires" value="1" class="btn btn-sm btn-success" title="'. _("Save the description") .'">'. _("Save") .'</button>
                         <button class="btn btn-default btn-sm btn-cancel" title="'. _('Cancel the description edit') .'">'. _('Cancel') .'</button>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-5">
-                    <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="admin-link"><a class="admin-link" href="' . Utils::getUrlSondage($numsondageadmin, true) . '">'._("Admin link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($numsondageadmin, true) . '" />
-                </div>
-                <div class="form-group col-md-2">
-                    <h4 class="control-label">'. _("Expiration's date") .'</h4>
-                    <p>'.date("d/m/Y",strtotime($dsondage->date_fin)).'</p>
                 </div>
             </div>
             <div class="row">

@@ -92,10 +92,10 @@ $config = [
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software
-    'show_cultivate_your_garden' => true,   // display "developpement and administration" information
+    'show_cultivate_your_garden' => false,   // display "developpement and administration" information
     /* choix_autre.php / choix_date.php */
     'default_poll_duration' => 180,          // default values for the new poll duration (number of days).
     /* choix_autre.php */
-    'user_can_add_img_or_link' => true,      // user can add link or URL when creating his poll.
+    'user_can_add_img_or_link' => false,      // user can add link or URL when creating his poll.
 ];
 

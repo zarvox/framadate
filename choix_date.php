@@ -75,19 +75,6 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
         $_SESSION["toutchoix"]=substr($choixdate,1);
 
-        // Expiration date → 6 months after last day if not filled or in bad format
-        $_SESSION["champdatefin"]=end($temp_results)+(86400 * $config['default_poll_duration']);
-
-        if (Utils::issetAndNoEmpty('champdatefin')) {
-            $registredate = explode("/",$_POST["champdatefin"]);
-            if (is_array($registredate) == true && count($registredate) == 3) {
-                $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
-                if ($time > time() + (24*60*60)) {
-                    $_SESSION["champdatefin"]=$time;
-                }
-            }
-        }
-
         ajouter_sondage();
 
     } else {
@@ -119,12 +106,11 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
     // Step 3/3 : Confirm poll creation
     if (Utils::issetAndNoEmpty('choixheures') && Utils::issetAndNoEmpty('totalchoixjour', $_SESSION)) {
 
-        Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
-        bandeau_titre(_("Removal date and confirmation (3 on 3)"));
+        Utils::print_header ( _("Confirmation (3 on 3)") );
+        bandeau_titre(_("Confirmation (3 on 3)"));
 
         $temp_array = array_unique($_SESSION["totalchoixjour"]);
         sort($temp_array);
-        $removal_date=utf8_encode(strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration'])));
 
         // Sumary
         $summary = '<ul>';
@@ -148,19 +134,6 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             <div class="well summary">
                 <h4>'. _("List of your choices").'</h4>
                 '. $summary .'
-            </div>
-            <div class="alert alert-info clearfix">
-                <p>' . _("Your poll will be automatically removed "). $config['default_poll_duration'] . ' ' . _("days") ._(" after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
-                <div class="form-group">
-                    <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
-                    <div class="col-sm-6">
-                        <div class="input-group date">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
-                        </div>
-                    </div>
-                    <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
-                </div>
             </div>
             <div class="alert alert-warning">
                 <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>';

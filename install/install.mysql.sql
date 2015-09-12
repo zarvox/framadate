@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   `titre` text,
   `id_sondage_admin` char(24) DEFAULT NULL,
   `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_fin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `format` varchar(2) DEFAULT NULL,
   `mailsonde` tinyint(1) DEFAULT '0',
   `statut` int(11) NOT NULL DEFAULT '1' COMMENT '1 = actif ; 0 = inactif ; ',
@@ -69,11 +68,11 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
 INSERT INTO `sondage`
 (`id_sondage`, `commentaires`, `mail_admin`, `nom_admin`,
 	     `titre`, `id_sondage_admin`,
-	     `date_fin`, `format`)
+	     `format`)
 VALUES
 ('aqg259dth55iuhwm','Repas de Noel du service','Stephanie@retaillard.com','Stephanie',
 			   'Repas de Noel','aqg259dth55iuhwmy9d8jlwk',
-			   FROM_UNIXTIME('1627100361'),'D+');
+			   'D+');
 
 --
 -- Data for Name: sujet_studs; Type: TABLE DATA;

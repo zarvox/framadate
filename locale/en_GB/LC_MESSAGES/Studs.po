@@ -79,7 +79,7 @@ msgid "dd/mm/yyyy"
 msgstr "dd/mm/yyyy"
 
 msgid "%A, den %e. %B %Y"
-msgstr "%A, den %e. %B %Y"
+msgstr "%A, %B %e %Y"
 
 msgid "Expiration's date"
 msgstr "Expiration's date"
@@ -284,10 +284,10 @@ msgid "Yes"
 msgstr "Yes"
 
 msgid "Ifneedbe"
-msgstr "Ifneedbe"
+msgstr "If need be"
 
 msgid ", ifneedbe"
-msgstr ", ifneedbe"
+msgstr ", if need be"
 
 msgid "No"
 msgstr "No"
@@ -299,7 +299,7 @@ msgid "Vote \"yes\" for "
 msgstr "Vote \"yes\" for "
 
 msgid "Vote \"ifneedbe\" for "
-msgstr "Vote \"ifneedbe\" for "
+msgstr "Vote \"if need be\" for "
 
 msgid "Save the choices"
 msgstr "Save the choices"

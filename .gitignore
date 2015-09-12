@@ -5,7 +5,6 @@ admin/logs_studs.txt
 composer.phar
 framanav
 nav
-app/inc/constants.php
 vendor
 
 # Temp files

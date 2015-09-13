@@ -29,6 +29,17 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
+// Restrict adminstuds.php to users with the admin permission.
+$perms = explode(",", $_SERVER["HTTP_X_SANDSTORM_PERMISSIONS"]);
+if (!in_array("admin", $perms, true)) {
+    $sql = "SELECT * FROM sondage LIMIT 1";
+    $sondage = $connect->Execute($sql);
+    $data = $sondage->FetchNextObject(false);
+    error_log("redirecting unprivileged adminstuds request");
+    header("Location:studs.php?sondage=" . $data->id_sondage);
+    exit();
+}
+
 // Initialisation des variables
 $numsondageadmin = false;
 $sondage = false;
@@ -486,12 +497,12 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
 for ($i = 0; $i < $nblignes; $i++) {
     if (isset($_POST["effaceligne$i"])) {
         $compteur=0;
-        $sql = 'DELETE FROM user_studs WHERE nom = '.$connect->Param('nom').' AND id_users = '.$connect->Param('id_users');
+        $sql = 'DELETE FROM user_studs WHERE id_users = '.$connect->Param('id_users');
         $sql = $connect->Prepare($sql);
 
         while ($data=$user_studs->FetchNextObject(false)) {
             if ($compteur==$i){
-                $connect->Execute($sql, array($data->nom, $data->id_users));
+                $connect->Execute($sql, array($data->id_users));
             }
 
             $compteur++;

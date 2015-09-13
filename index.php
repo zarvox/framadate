@@ -33,18 +33,44 @@ session_start();
 // Sandstorm: redirect to appropriate page depending on
 // which type of grain this is and whether a poll has actually
 // been created yet or not
+
+// Load grain type.
 $grain_type = trim(file_get_contents("/var/action.txt"));
-if ($grain_type == "schedule") {
-    // TODO: only do this if the sondage table is empty
-    header("Location:infos_sondage.php?choix_sondage=date");
-    exit();
-    // Otherwise, check permissions and redirect to either adminstuds or studs
+
+// See if a poll/calendar has been made yet, and load IDs if so.
+$sql = 'SELECT * FROM sondage LIMIT 1';
+$sondages = $connect->Execute($sql);
+
+$count = 0;
+$admin_id = null;
+$sondage_id = null;
+
+while ($data = $sondages->FetchNextObject(false)) {
+    $admin_id = $data->id_sondage_admin;
+    $sondage_id = $data->id_sondage;
+    $count = $count + 1;
 }
-if ($grain_type == "poll") {
-    // TODO: only do this if the sondage table is empty
-    header("Location:infos_sondage.php?choix_sondage=autre");
-    exit();
-    // Otherwise, check permissions and redirect to either adminstuds or studs
+
+if ($count == 0) {
+    if ($grain_type == "schedule") {
+        header("Location:infos_sondage.php?choix_sondage=date");
+        exit();
+    }
+    if ($grain_type == "poll") {
+        header("Location:infos_sondage.php?choix_sondage=autre");
+        exit();
+    }
+} else {
+    // Check permissions and redirect to either adminstuds or studs, depending on permission level
+    $perms = explode(",", $_SERVER["HTTP_X_SANDSTORM_PERMISSIONS"]);
+    $isAdmin = in_array("admin", $perms, true);
+    if ($isAdmin) {
+        header("Location:adminstuds.php?sondage=" . $admin_id);
+        exit();
+    } else {
+        header("Location:studs.php?sondage=" . $sondage_id);
+        exit();
+    }
 }
 
 // affichage de la page

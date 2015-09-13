@@ -27,10 +27,12 @@ const pkgdef :Spk.PackageDefinition = (
 
     actions = [
       # Define your "new document" handlers here.
-      ( nounPhrase = (defaultText = "date picker"),
+      ( title = (defaultText = "New date picker"),
+        nounPhrase = (defaultText = "date picker"),
         command = .actionSchedule,
       ),
-      ( nounPhrase = (defaultText = "poll"),
+      ( title = (defaultText = "New Poll"),
+        nounPhrase = (defaultText = "poll"),
         command = .actionPoll,
       ),
     ],

@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3cdb051814926a50182b00bbf5297ed2",
+    "hash": "465ae7ad90ea0feaf9f6b4f0855c5530",
     "packages": [
         {
             "name": "adodb/adodb-php",
-            "version": "v5.19",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
-                "reference": "773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de"
+                "reference": "1a4befc14c52a96591eca2424ff87eabe7d233e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ADOdb/ADOdb/zipball/773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de",
-                "reference": "773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de",
+                "url": "https://api.github.com/repos/ADOdb/ADOdb/zipball/1a4befc14c52a96591eca2424ff87eabe7d233e2",
+                "reference": "1a4befc14c52a96591eca2424ff87eabe7d233e2",
                 "shasum": ""
             },
             "require": {
@@ -50,24 +50,17 @@
             "keywords": [
                 "database"
             ],
-            "time": "2014-04-23 14:37:03"
+            "time": "2015-09-11 12:20:07"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "adodb/adodb-php": 20
+    },
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }

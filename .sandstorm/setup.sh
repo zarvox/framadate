@@ -4,7 +4,7 @@ set -euo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y nginx php5-fpm php5-mysql php5-cli php5-curl git php5-dev mysql-server
+apt-get install -y nginx php5-fpm php5-sqlite php5-cli php5-curl git php5-dev sqlite3
 unlink /etc/nginx/sites-enabled/default
 cat > /etc/nginx/sites-available/sandstorm-php <<EOF
 server {
@@ -29,10 +29,8 @@ EOF
 ln -s /etc/nginx/sites-available/sandstorm-php /etc/nginx/sites-enabled/sandstorm-php
 service nginx stop
 service php5-fpm stop
-service mysql stop
 systemctl disable nginx
 systemctl disable php5-fpm
-systemctl disable mysql
 # patch /etc/php5/fpm/pool.d/www.conf to not change uid/gid to www-data
 sed --in-place='' \
         --expression='s/^listen.owner = www-data/#listen.owner = www-data/' \
@@ -44,18 +42,6 @@ sed --in-place='' \
 sed --in-place='' \
         --expression='s/^pid =/#pid =/' \
         /etc/php5/fpm/php-fpm.conf
-# patch mysql conf to not change uid
-sed --in-place='' \
-        --expression='s/^user\t\t= mysql/#user\t\t= mysql/' \
-        /etc/mysql/my.cnf
-# patch mysql conf to use smaller transaction logs to save disk space
-cat <<EOF > /etc/mysql/conf.d/sandstorm.cnf
-[mysqld]
-# Set the transaction log file to the minimum allowed size to save disk space.
-innodb_log_file_size = 1048576
-# Set the main data file to grow by 1MB at a time, rather than 8MB at a time.
-innodb_autoextend_increment = 1
-EOF
 # patch nginx conf to not bother trying to setuid, since we're not root
 # also patch errors to go to stderr, and logs nowhere.
 sed --in-place='' \

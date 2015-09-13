@@ -8,17 +8,17 @@ Si vous souhaitez travailler avec nous, **forkez-nous sur [git.framasoft.org](ht
 * * *
 
 ![English:](http://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png)
-This software is governed by the CeCILL-B license. If a copy of this license
+This software is governed by the CeCILL license. If a copy of this license
 is not distributed with this file, you can obtain one at
-[http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt](http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt)
+[http://www.cecill.info/licences/Licence_CeCILL_V1-US.txt](http://www.cecill.info/licences/Licence_CeCILL_V1-US.txt)
 
 Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ  
 Authors of Framadate/OpenSondate: [Framasoft](https://git.framasoft.org/framasoft/framadate)
 
 ![Français :](http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) 
-Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+Ce logiciel est régi par la licence CeCILL. Si une copie de cette licence
 ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
-[http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt](http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt)
+[http://www.cecill.info/licences/Licence_CeCILL_V1-fr.txt](http://www.cecill.info/licences/Licence_CeCILL_V1-fr.txt)
 
 Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ  
 Auteurs de Framadate/OpenSondage : [Framasoft](https://git.framasoft.org/framasoft/framadate)

@@ -33,10 +33,10 @@ const ADRESSEMAILADMIN = '<email address>';
 const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
 
 // Database name
-const BASE = 'framadate';
+const BASE = '/var/data.db';
 
 // Database user
-const USERBASE = "root";
+const USERBASE = "";
 
 // Database password
 const USERPASSWD = '';
@@ -45,7 +45,7 @@ const USERPASSWD = '';
 const SERVEURBASE = '';
 
 // Database type (mysql, postgres…) http://phplens.com/lens/adodb/docs-adodb.htm#drivers
-const BASE_TYPE = 'mysql';
+const BASE_TYPE = 'sqlite3';
 
 // Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
 const LANGUE = 'en_GB';

@@ -10,7 +10,7 @@
     "type": "project",
     
     "require": {
-        "adodb/adodb-php": "5.19"
+        "adodb/adodb-php": "dev-master"
     },
 
     "autoload": {

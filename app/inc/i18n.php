@@ -66,7 +66,7 @@ $lang = ($_SESSION['langue']!='') ? strtolower($_SESSION['langue']) : 'fr';
 
 
 /* Date Format */
-$date_format['txt_full'] = _("%A, den %e. %B %Y"); //summary in choix_date.php and removal date in choix_(date|autre).php
+$date_format['txt_full'] = _("%A, %B %e %Y"); //summary in choix_date.php and removal date in choix_(date|autre).php
 $date_format['txt_short'] = "%A %e %B %Y"; // radio title
 $date_format['txt_day'] = "%a %e";
 if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ //%e can't be used on Windows platform, use %#d instead

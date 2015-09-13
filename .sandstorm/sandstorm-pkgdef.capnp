@@ -28,13 +28,14 @@ const pkgdef :Spk.PackageDefinition = (
     actions = [
       # Define your "new document" handlers here.
       ( nounPhrase = (defaultText = "date picker"),
-        command = .myCommand
-        # The command to run when starting for the first time. (".myCommand"
-        # is just a constant defined at the bottom of the file.)
-      )
+        command = .actionSchedule,
+      ),
+      ( nounPhrase = (defaultText = "poll"),
+        command = .actionPoll,
+      ),
     ],
 
-    continueCommand = .myCommand
+    continueCommand = .actionContinue
     # This is the command called to start your app back up after it has been
     # shut down for inactivity. Here we're using the same command as for
     # starting a new instance, but you could use different commands for each
@@ -71,7 +72,23 @@ const pkgdef :Spk.PackageDefinition = (
   # a directory here, its entire contents will be included recursively.
 );
 
-const myCommand :Spk.Manifest.Command = (
+const actionSchedule :Spk.Manifest.Command = (
+  argv = ["/sandstorm-http-bridge", "8000", "--", "/opt/app/.sandstorm/new-schedule.sh"],
+  environ = [
+    # Note that this defines the *entire* environment seen by your app.
+    (key = "PATH", value = "/usr/local/bin:/usr/bin:/bin")
+  ]
+);
+
+const actionPoll :Spk.Manifest.Command = (
+  argv = ["/sandstorm-http-bridge", "8000", "--", "/opt/app/.sandstorm/new-poll.sh"],
+  environ = [
+    # Note that this defines the *entire* environment seen by your app.
+    (key = "PATH", value = "/usr/local/bin:/usr/bin:/bin")
+  ]
+);
+
+const actionContinue :Spk.Manifest.Command = (
   # Here we define the command used to start up your server.
   argv = ["/sandstorm-http-bridge", "8000", "--", "/opt/app/.sandstorm/launcher.sh"],
   environ = [

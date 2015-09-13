@@ -30,6 +30,23 @@ if (is_readable('bandeaux_local.php')) {
 
 session_start();
 
+// Sandstorm: redirect to appropriate page depending on
+// which type of grain this is and whether a poll has actually
+// been created yet or not
+$grain_type = trim(file_get_contents("/var/action.txt"));
+if ($grain_type == "schedule") {
+    // TODO: only do this if the sondage table is empty
+    header("Location:infos_sondage.php?choix_sondage=date");
+    exit();
+    // Otherwise, check permissions and redirect to either adminstuds or studs
+}
+if ($grain_type == "poll") {
+    // TODO: only do this if the sondage table is empty
+    header("Location:infos_sondage.php?choix_sondage=autre");
+    exit();
+    // Otherwise, check permissions and redirect to either adminstuds or studs
+}
+
 // affichage de la page
 Utils::print_header( _("Home") );
 bandeau_titre(_("Make your polls"));

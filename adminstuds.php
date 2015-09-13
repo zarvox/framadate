@@ -274,7 +274,7 @@ if (isset($_POST["confirmesuppression"])) {
 
     if (Utils::remove_sondage($connect, $numsondage)) {
         // on ecrit dans le fichier de logs la suppression du sondage
-        error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, '/var/logs_studs.txt');
+        error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n");
 
         // Email sent
         send_mail_admin();

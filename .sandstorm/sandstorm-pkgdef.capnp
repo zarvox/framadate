@@ -21,7 +21,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     appVersion = 0,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "0.0.0"),
+    appMarketingVersion = (defaultText = "0.8"),
     # Human-readable representation of appVersion. Should match the way you
     # identify versions of your app in documentation and marketing.
 
@@ -37,11 +37,38 @@ const pkgdef :Spk.PackageDefinition = (
       ),
     ],
 
-    continueCommand = .actionContinue
+    continueCommand = .actionContinue,
     # This is the command called to start your app back up after it has been
     # shut down for inactivity. Here we're using the same command as for
     # starting a new instance, but you could use different commands for each
     # case.
+
+    metadata = (
+      icons = (
+        appGrid = (png = (dpi1x = embed "logo-128.png")),
+        grain = (png = (dpi1x = embed "logo-24.png")),
+        market = (png = (dpi1x = embed "logo-150.png")),
+        marketBig = (png = (dpi1x = embed "logo-300.png")),
+      ),
+      website = "https://framadate.org/",
+      codeUrl = "https://github.com/zarvox/framadate",
+      license = (openSource = gpl3),
+      categories = [productivity],
+
+      author = (
+        contactEmail = "drew@sandstorm.io",
+        pgpSignature = embed "pgp-signature",
+        upstreamAuthor = "Framasoft",
+      ),
+      pgpKeyring = embed "pgp-keyring",
+      description = (defaultText = embed "description.md"),
+      shortDescription = (defaultText = "Pick a time, take a poll"),
+      screenshots = [
+        (width = 446, height = 300, png = embed "../images/classic.png"),
+        (width = 446, height = 300, png = embed "../images/date.png"),
+      ],
+      changeLog = (defaultText = embed "changelog.md"),
+    ),
   ),
 
   sourceMap = (

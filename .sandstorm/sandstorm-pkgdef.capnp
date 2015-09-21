@@ -19,7 +19,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Framadate"),
 
-    appVersion = 0,  # Increment this for every release.
+    appVersion = 1,  # Increment this for every release.
 
     appMarketingVersion = (defaultText = "0.8"),
     # Human-readable representation of appVersion. Should match the way you
@@ -45,10 +45,9 @@ const pkgdef :Spk.PackageDefinition = (
 
     metadata = (
       icons = (
-        appGrid = (png = (dpi1x = embed "logo-128.png")),
-        grain = (png = (dpi1x = embed "logo-24.png")),
-        market = (png = (dpi1x = embed "logo-150.png")),
-        marketBig = (png = (dpi1x = embed "logo-300.png")),
+        appGrid = (svg = embed "framadate-128.svg"),
+        grain = (svg = embed "framadate-24.svg"),
+        market = (svg = embed "framadate-150.svg"),
       ),
       website = "https://framadate.org/",
       codeUrl = "https://github.com/zarvox/framadate",
